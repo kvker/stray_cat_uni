@@ -3,7 +3,7 @@
     {
       "path": "pages/index/index",
       "style": {
-        "navigationBarTitleText": "首页"
+        "navigationBarTitleText": "猫咪档案"
       }
     },
     {
@@ -12,7 +12,11 @@
         "navigationBarTitleText": "登录"
       }
     }
-  ],
+      ,{
+            "path" : "pages/detail/index",
+            "style" : {}
+        }
+    ],
   "globalStyle": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "流浪猫",

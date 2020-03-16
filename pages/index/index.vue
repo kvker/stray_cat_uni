@@ -1,34 +1,70 @@
 <template>
-  <view class="content">
-    <view class="text-area">
-      <text class="title">{{title}}</text>
-    </view>
-  </view>
+  <scroll-view scroll-y style="height: 100%;" class="container">
+    <CatCard v-for="(item, idx) in jsonList" :key="item.objectId" :item="item"></CatCard>
+  </scroll-view>
 </template>
 
 <script>
+  import CatCard from '@/components/card/cat/index.vue'
+
   export default {
+    components: {
+      CatCard,
+    },
     data() {
       return {
-        title: 'Hello'
+        list: [],
+        page: 0,
+        size: 10,
+      }
+    },
+    computed: {
+      jsonList() {
+        return this.list.map(i => {
+          let json = i.toJSON()
+          json.quchong_outer = json.quchong === 0 ? '是' : '否'
+          json.quchong_inner = json.quchong === 1 ? '是' : '否'
+          json.lingyang_label = this.$util.getlingyangLevelLabel(json.lingyang_level)
+          json.jueyu_label = json.jueyu_status ? (json.jueyu_status === 1 ? '已绝育' : '未知') : '未绝育'
+          return json
+        })
       }
     },
     onLoad() {
       this.checkLogin()
+      this.getList()
     },
     methods: {
+      /**
+       * 检测登录状态, 没登录就踢到登录注册页
+       */
       checkLogin() {
         if (!this.$av.currentUser()) {
           uni.reLaunch({
             url: '/pages/login/index'
           })
         }
-      }
+      },
+      /**
+       * 获取列表数据
+       */
+      async getList(page = this.page) {
+        let list = await this.$av.read('Cat', q => {
+          q.limit(10)
+          q.skip(page * 10)
+        })
+        this.list = list
+      },
     }
   }
 </script>
 
 <style>
+  page {
+    padding: 20rpx;
+    background-color: #F4EFE9;
+  }
+
   .content {
     display: flex;
     flex-direction: column;

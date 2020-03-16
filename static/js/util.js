@@ -178,4 +178,25 @@ export default {
       return {}
     }
   },
+  /**
+   * 等级数字转文字
+   * @param {number} level传入的等级
+   */
+  getlingyangLevelLabel(level) {
+    let label
+    switch(level) {
+      case 0: label = '超不适合'
+      break
+      case 1: label = '较不适合'
+      break
+      case 2: label = '一般'
+      break
+      case 3: label = '较适合'
+      break
+      case 4: label = '超适合'
+      break
+      default: label = '其他'
+    }
+    return label
+  },
 }
