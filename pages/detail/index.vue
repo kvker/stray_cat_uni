@@ -9,7 +9,7 @@
         </swiper-item>
       </swiper>
       <view class="box mt-20">
-        <view class="flex p-20">
+        <view class="line-box flex">
           <view class="flex aic f1 title-box">
             <text class="title">花名</text>
             <text class="value ml-20">{{jsonDetail.name}}</text>
@@ -19,7 +19,7 @@
             <text class="value ml-20">{{jsonDetail.id}}</text>
           </view>
         </view>
-        <view class="flex p-20">
+        <view class="line-box flex">
           <view class="flex aic f1 title-box">
             <text class="title">性别</text>
             <text class="value ml-20">{{jsonDetail.sex_label}}</text>
@@ -29,7 +29,7 @@
             <text class="value ml-20">{{jsonDetail.category}}</text>
           </view>
         </view>
-        <view class="flex p-20">
+        <view class="line-box flex">
           <view class="flex aic f1 title-box">
             <text class="title">猫龄</text>
             <text class="value ml-20">{{jsonDetail.age_label}}</text>
@@ -39,7 +39,7 @@
             <text class="value ml-20">{{jsonDetail.jueyu_label}}</text>
           </view>
         </view>
-        <view class="flex p-20">
+        <view class="line-box flex">
           <view class="flex aic f1 title-box">
             <text class="title">体内驱虫</text>
             <text class="value ml-20">{{jsonDetail.quchong_inner_label}}</text>
@@ -49,7 +49,7 @@
             <text class="value ml-20">{{jsonDetail.quchong_outer_label}}</text>
           </view>
         </view>
-        <view class="flex p-20">
+        <view class="line-box flex">
           <view class="flex aic f1 title-box">
             <text class="title">领养适合度</text>
             <text class="value ml-20">{{jsonDetail.lingyang_label}}</text>
@@ -58,14 +58,32 @@
         </view>
       </view>
       <view class="box mt-20">
-
+        <view class="cell">
+          外观描述
+        </view>
+        <view class="line"></view>
+        <view class="content">
+          {{jsonDetail.waiguan}}
+        </view>
       </view>
       <view class="box mt-20">
-
+        <view class="cell">
+          性格描述
+        </view>
+        <view class="line"></view>
+        <view class="content">
+          {{jsonDetail.xingge}}
+        </view>
       </view>
-      <view class="box mt-20">
-
-      </view>
+      <!-- <view class="box mt-20">
+        <view class="cell">
+          常见活动范围
+        </view>
+        <view class="line"></view>
+        <view class="content">
+          {{jsonDetail.xingge}}
+        </view>
+      </view> -->
     </template>
   </view>
 </template>
@@ -101,8 +119,11 @@
         let list = await this.$av.read('Cat', q => {
           q.equalTo('objectId', objectId)
         })
-        console.log(list[0])
+        // console.log(list[0])
         this.detail = list[0]
+        uni.setNavigationBarTitle({
+          title: `${this.detail.get('name')}的档案`,
+        })
       },
     },
   }
@@ -117,16 +138,37 @@
     background-color: white;
   }
 
-  .title {
-    font-size: 32rpx;
+  .line-box {
+    padding: 20upx 40upx 0;
+  }
+
+  .line-box:last-child {
+    padding: 20upx 40upx;
+  }
+
+  .title, .cell {
+    font-size: 32upx;
     font-family: PingFang SC;
     font-weight: 200;
     color: rgba(148, 148, 148, 1);
   }
 
-  .value {
-    font-size: 32rpx;
+  .value, .content {
+    font-size: 32upx;
     font-family: PingFang SC;
     color: rgba(56, 56, 56, 1);
+  }
+
+  .cell {
+    padding: 40upx 40upx 20upx;
+  }
+
+  .content {
+    padding: 20upx 40upx 40upx;
+  }
+  
+  .line {
+    height: 2rpx;
+    background-color: #eee;
   }
 </style>
