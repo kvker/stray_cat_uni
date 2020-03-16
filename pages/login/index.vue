@@ -44,7 +44,7 @@
         if (is_email && password.trim().length > 5) {
           try {
             let user = await this.$av.loginWithEmail(email, password)
-            console.log(user)
+            // console.log(user)
             uni.reLaunch({
               url: '/pages/index/index'
             })
@@ -54,7 +54,7 @@
             console.log(e)
             try {
               let user = await this.$av.registWithEmail(email, password)
-              console.log(user)
+              // console.log(user)
               uni.reLaunch({
                 url: '/pages/index/index'
               })

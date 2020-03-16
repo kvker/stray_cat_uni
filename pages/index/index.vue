@@ -15,9 +15,6 @@
     },
     onLoad() {
       this.checkLogin()
-      // this.$av.read('Cat').then(ret => {
-      //   console.log(ret)
-      // })
     },
     methods: {
       checkLogin() {

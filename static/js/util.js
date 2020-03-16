@@ -1,8 +1,11 @@
+import dayjs from 'dayjs'
+
 // 功能函数临时储存器
 let doLastTimeout, doLastOperates = []
 let timeout = 500
 
 export default {
+  dayjs,
   /**
    * 队列执行的多个操作，只执行最后一个操作，比如输入内容检索
    * @param {function} operate 传入的操作
