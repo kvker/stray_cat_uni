@@ -54,7 +54,9 @@
             <text class="title">领养适合度</text>
             <text class="value ml-20">{{jsonDetail.lingyang_label}}</text>
           </view>
-          <view class="flex aic f1 value-box"></view>
+          <view class="flex aic f1 value-box">
+          <text class="title">居住地</text>
+          <text class="value ml-20">{{jsonDetail.address}}</text></view>
         </view>
       </view>
       <view class="box mt-20">
@@ -81,7 +83,7 @@
         </view>
         <view class="line"></view>
         <view class="content">
-          {{jsonDetail.xingge}}
+          {{jsonDetail.address}}
         </view>
       </view> -->
     </template>
@@ -102,8 +104,8 @@
           let json = this.detail.toJSON()
           json.age_label = json.age || '未知'
           json.sex_label = json.jueyu_status ? (json.jueyu_status === 1 ? '公' : '未知') : '母'
-          json.quchong_outer_label = this.$util.formatDate(json.quchong_outer, 'YY/MM/DD')
-          json.quchong_inner_label = this.$util.formatDate(json.quchong_inner, 'YY/MM/DD')
+          json.quchong_outer_label = json.quchong_outer ? this.$util.formatDate(json.quchong_outer, 'YY/MM/DD') : '未驱虫'
+          json.quchong_inner_label = json.quchong_inner ? this.$util.formatDate(json.quchong_inner, 'YY/MM/DD') : '未驱虫'
           json.lingyang_label = this.$util.getlingyangLevelLabel(json.lingyang_level)
           json.jueyu_label = json.jueyu_status ? (json.jueyu_status === 1 ? '已绝育' : '未知') : '未绝育'
           return json

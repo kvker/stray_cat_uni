@@ -24,11 +24,11 @@
     <view class="box flex">
       <view class="flex aic f1 title-box">
         <text class="title">体内驱虫</text>
-        <text class="value ml-20">{{item.quchong_inner}}</text>
+        <text class="value ml-20">{{item.quchong_inner_label}}</text>
       </view>
       <view class="flex aic f1 value-box">
         <text class="title">体外驱虫</text>
-        <text class="value ml-20">{{item.quchong_outer}}</text>
+        <text class="value ml-20">{{item.quchong_outer_label}}</text>
       </view>
     </view>
   </navigator>
