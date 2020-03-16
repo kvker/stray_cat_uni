@@ -2,7 +2,7 @@
   <view class="container">
     <template v-if="detail.id">
       <swiper style="height: 600upx;" class="swiper" :indicator-dots="true" :autoplay="true" :duration="3000">
-        <swiper-item style="height: 600upx;" v-for="(url, idx) in jsonDetail.picture" :key="idx">
+        <swiper-item style="height: 600upx;" v-for="(url, idx) in jsonDetail.imgs" :key="idx">
           <view class="swiper-item uni-bg-red">
             <image class="w-100" style="height: 600upx;" :src="url" mode="aspectFill"></image>
           </view>
@@ -63,7 +63,6 @@
         <view class="cell">
           外观描述
         </view>
-        <view class="line"></view>
         <view class="content">
           {{jsonDetail.waiguan}}
         </view>
@@ -72,7 +71,6 @@
         <view class="cell">
           性格描述
         </view>
-        <view class="line"></view>
         <view class="content">
           {{jsonDetail.xingge}}
         </view>
@@ -81,12 +79,14 @@
         <view class="cell">
           常见活动范围
         </view>
-        <view class="line"></view>
         <view class="content">
           {{jsonDetail.address}}
         </view>
       </view> -->
     </template>
+    <navigator url="/pages/detail/edit/index" class="fab">
+      <image src="/static/img/cat.png" mode="aspectFill"></image>
+    </navigator>
   </view>
 </template>
 
@@ -167,10 +167,18 @@
 
   .content {
     padding: 20upx 40upx 40upx;
+    border-top: 2rpx solid #eee;
   }
   
-  .line {
-    height: 2rpx;
-    background-color: #eee;
+  .fab {
+    position: fixed;
+    right: 20upx;
+    bottom: 20upx;
+  }
+  
+  .fab image {
+    width: 80upx;
+    height: 80upx;
+    border-radius: 50%;
   }
 </style>
