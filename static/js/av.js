@@ -128,6 +128,14 @@ export default {
     return AV.User.logIn(username, password)
   },
   /**
+   * 邮箱登录
+   * @param {string} email 邮箱
+   * @param {string} password 密码
+   */
+  loginWithEmail(email, password) {
+    return AV.User.loginWithEmail(email, password)
+  },
+  /**
    * 注册
    */
   regist(username, password) {
@@ -137,6 +145,22 @@ export default {
     // 等同于 user.set('username', 'Tom')
     user.setUsername(username);
     user.setPassword(password);
+    return user.signUp()
+  },
+  /**
+   * 邮箱注册
+   */
+  registWithEmail(email, password) {
+    // 创建实例
+    const user = new AV.User()
+  
+    // 等同于 user.set('username', 'Tom')
+    user.setUsername(email)
+    user.setPassword(password)
+    
+    // 可选
+    user.setEmail(email)
+    
     return user.signUp()
   },
   /**

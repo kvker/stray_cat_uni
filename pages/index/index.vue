@@ -14,12 +14,19 @@
       }
     },
     onLoad() {
-      this.$av.read('Cat').then(ret => {
-        console.log(ret)
-      })
+      this.checkLogin()
+      // this.$av.read('Cat').then(ret => {
+      //   console.log(ret)
+      // })
     },
     methods: {
-
+      checkLogin() {
+        if (!this.$av.currentUser()) {
+          uni.reLaunch({
+            url: '/pages/login/index'
+          })
+        }
+      }
     }
   }
 </script>

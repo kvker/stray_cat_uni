@@ -4,6 +4,11 @@ import av from './static/js/av.js'
 
 Vue.config.productionTip = false
 Vue.prototype.$av = av
+Vue.prototype.$showToast = function(title = '错误') {
+  uni.showToast({
+    title,
+  })
+}
 
 App.mpType = 'app'
 
