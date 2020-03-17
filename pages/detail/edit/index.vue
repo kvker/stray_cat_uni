@@ -89,7 +89,7 @@
         <view class="title mt-40">上传猫照片(要能看到清晰猫脸的全身照)</view>
         <view class="flex flex-wrap imgs-box mt-20">
           <view class="flex jcc aic add-icon"></view>
-          <image v-for="(url, idx) in imgs" class="ml-20" :src="url" mode="aspectFit"></image>
+          <image v-for="(url, idx) in imgs" :key="idx" class="ml-20" :src="url" mode="aspectFit"></image>
         </view>
       </view>
     </view>
