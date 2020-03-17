@@ -38,6 +38,9 @@
     onShow() {
       this.getList()
     },
+    onShareAppMessage() {
+      
+    },
     methods: {
       /**
        * 检测登录状态, 没登录就踢到登录注册页

@@ -126,6 +126,9 @@
     onShow() {
       this.getDetail(this.objectId)
     },
+    onShareAppMessage() {
+      
+    },
     methods: {
       async getDetail(objectId = this.objectId) {
         let list = await this.$av.read('Cat', q => {
