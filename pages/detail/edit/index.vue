@@ -58,15 +58,15 @@
       </view>
       <view class="card-box">
         <view class="title mt-40">外观描述</view>
-        <textarea class="mt-20" v-model="waiguan" placeholder="描述外观"></textarea>
+        <textarea auto-height :maxlength="-1" class="mt-20" v-model="waiguan" placeholder="描述外观"></textarea>
       </view>
       <view class="card-box">
         <view class="title mt-40">性格描述</view>
-        <textarea class="mt-20" v-model="xingge" placeholder="描述猫咪大致性格"></textarea>
+        <textarea auto-height :maxlength="-1" class="mt-20" v-model="xingge" placeholder="描述猫咪大致性格"></textarea>
       </view>
       <view class="card-box mt-40 pb-20">
         <view class="title">常见活动范围描述</view>
-        <textarea class="mt-20" v-model="address" placeholder="活动范围"></textarea>
+        <textarea auto-height :maxlength="-1" class="mt-20" v-model="address" placeholder="活动范围"></textarea>
       </view>
     </view>
     <view class="box mt-20">
@@ -184,7 +184,7 @@
 
   textarea {
     width: 100%;
-    height: 164upx;
+    min-height: 164upx;
     border: 2rpx solid #F4EFE9;
     margin-bottom: 40upx;
   }
