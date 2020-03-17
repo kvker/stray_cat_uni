@@ -1,4 +1,4 @@
-import AV from 'leancloud-storage'
+import AV from '../lib/av-weapp-min.js'
 
 if(!(AV.applicationId && (AV.applicationKey || AV.masterKey))) {
   let lc = {
