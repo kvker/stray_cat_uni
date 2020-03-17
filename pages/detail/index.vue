@@ -1,7 +1,7 @@
 <template>
-  <view class="container">
+  <view class="container pb-20">
     <template v-if="detail.id">
-      <swiper style="height: 600upx;" class="swiper" :indicator-dots="true" :autoplay="true" :duration="3000">
+      <swiper style="height: 600upx;" class="swiper" :indicator-dots="true" :autoplay="true" :duration="300">
         <swiper-item style="height: 600upx;" v-for="(url, idx) in jsonDetail.imgs" :key="idx">
           <view class="swiper-item uni-bg-red">
             <image class="w-100" style="height: 600upx;" :src="url" mode="aspectFill"></image>
