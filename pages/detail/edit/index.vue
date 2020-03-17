@@ -134,13 +134,15 @@
       form() {
         let form = {
           name: this.name,
-          age: this.age,
-          category: this.category,
-          jueyu_status: this.jueyu_status,
+          age: +this.age_idx,
+          category: +this.category_idx,
+          jueyu_status: +this.jueyu_status,
           cover_img: this.cover_img,
-          address: this.address,
+          imgs: this.imgs,
+          address: '中兴和园',
           xingge: this.xingge,
           waiguan: this.waiguan,
+          lingyang_level: +this.lingyang_idx,
         }
         if (this.quchong_inner) {
           form.quchong_inner = this.$util.dayjs(this.quchong_inner).toDate()
@@ -196,12 +198,6 @@
         this[type] = e.detail.value
       },
       /**
-       * 提交
-       */
-      clickSubmit() {
-        console.log(this.form)
-      },
-      /**
        * 点击封面图上传
        */
       clickChooseCoverImg() {
@@ -217,12 +213,11 @@
               console.log(img)
               this.cover_img = img.get('url')
             } catch (e) {
-              //TODO handle the exception
+              console.log(e)
               this.$showToast('上传失败')
             }
           },
           complete: () => {
-            console.log(e)
             uni.hideLoading()
           },
         })
@@ -238,7 +233,7 @@
             // console.log(ret)
             this.$showLoading('上传中...')
             let length = ret.tempFilePaths.length
-            if(length > 4) {
+            if (length > 4) {
               this.$showToast('太多了')
               return
             }
@@ -263,6 +258,30 @@
           },
         })
       },
+      /**
+       * 提交
+       */
+      async clickSubmit() {
+        const {
+          name,
+          cover_img,
+        } = this.form
+        if(!name.trim() || !cover_img.trim()) {
+          this.$showToast('内容不全')
+          return
+        }
+        console.log(this.form)
+        try {
+          await this.$av.create('Cat', this.form)
+          this.$showToast('上传成功', 'success')
+          setTimeout(() => {
+            uni.navigateBack()
+          }, 1500)
+        } catch (e) {
+          console.log(e)
+          this.$showToast('上传失败')
+        }
+      },
     }
   }
 </script>
@@ -284,7 +303,7 @@
   }
 
   .cell picker {
-    margin-right: 80upx;
+    margin-right: 40upx;
   }
 
   input {

@@ -6,10 +6,10 @@ import util from './static/js/util.js'
 Vue.config.productionTip = false
 Vue.prototype.$av = av
 Vue.prototype.$util = util
-Vue.prototype.$showToast = function(title = '错误') {
+Vue.prototype.$showToast = function(title = '错误', icon = 'none') {
   uni.showToast({
     title,
-    icon: 'none',
+    icon,
   })
 }
 Vue.prototype.$showLoading = function(title = '进行中...') {

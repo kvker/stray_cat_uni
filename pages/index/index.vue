@@ -22,8 +22,10 @@
       jsonList() {
         return this.list.map(i => {
           let json = i.toJSON()
-          json.quchong_outer_label = json.quchong_outer ? this.$util.formatDate(json.quchong_outer, 'YY/MM/DD') : '未驱虫'
-          json.quchong_inner_label = json.quchong_inner ? this.$util.formatDate(json.quchong_inner, 'YY/MM/DD') : '未驱虫'
+          json.quchong_outer_label = json.quchong_outer ? this.$util.formatDate(json.quchong_outer, 'YY/MM/DD') :
+            '未驱虫'
+          json.quchong_inner_label = json.quchong_inner ? this.$util.formatDate(json.quchong_inner, 'YY/MM/DD') :
+            '未驱虫'
           json.lingyang_label = this.$util.getLingyangLevelLabel(json.lingyang_level)
           json.jueyu_label = json.jueyu_status ? (json.jueyu_status === 1 ? '已绝育' : '未知') : '未绝育'
           return json
@@ -32,6 +34,8 @@
     },
     onLoad() {
       this.checkLogin()
+    },
+    onShow() {
       this.getList()
     },
     methods: {

@@ -115,6 +115,8 @@
     },
     onLoad(options) {
       this.objectId = options.objectId
+    },
+    onShow() {
       this.getDetail(this.objectId)
     },
     methods: {

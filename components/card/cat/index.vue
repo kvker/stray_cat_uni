@@ -1,6 +1,6 @@
 <template>
   <navigator :url="`/pages/detail/index?objectId=${item.objectId}`" class="cat-card mb-20">
-    <image class="cat-img" :src="item.imgs[0]" mode="aspectFill"></image>
+    <image class="cat-img" :src="item.cover_img" mode="aspectFill"></image>
     <view class="box flex">
       <view class="flex aic f1 title-box">
         <text class="title">花名</text>
