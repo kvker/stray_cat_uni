@@ -11,6 +11,14 @@ Vue.prototype.$showToast = function(title = '错误') {
     title,
   })
 }
+Vue.prototype.$showLoading = function(title = '进行中...') {
+  uni.showLoading({
+    title,
+  })
+  setTimeout(() => {
+    uni.hideLoading()
+  }, 30000)
+}
 
 App.mpType = 'app'
 

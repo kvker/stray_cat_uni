@@ -81,7 +81,7 @@
     <view class="box mt-20">
       <view class="card-box pt-40">
         <view class="title">上传猫封面</view>
-        <view class="flex jcc aic cover-img-box mt-20">
+        <view class="flex jcc aic cover-img-box mt-20" @click="clickChooseImage">
           <image :src="cover_img" mode="aspectFit"></image>
         </view>
       </view>
@@ -89,7 +89,7 @@
         <view class="title mt-40">上传猫照片(要能看到清晰猫脸的全身照)</view>
         <view class="flex flex-wrap imgs-box mt-20">
           <view class="flex jcc aic add-icon"></view>
-          <image class="ml-20" :src="cover_img" mode="aspectFit"></image>
+          <image v-for="(url, idx) in imgs" class="ml-20" :src="url" mode="aspectFit"></image>
         </view>
       </view>
     </view>
@@ -124,7 +124,10 @@
         age_idx: 0,
         lingyang_list: [0, 1, 2, 3, 4].map(i => this.$util.getLingyangLevelLabel(i)),
         lingyang_idx: 0,
-        age_list: ['未知', '0-3个月', '3-6个月', '6-12个月', ...Array.from({length: 17}, (i, idx) => idx).map(i => `${i + 1}-${i + 2}岁`)],
+        age_list: ['未知', '0-3个月', '3-6个月', '6-12个月', ...Array.from({
+          length: 17
+        }, (i, idx) => idx).map(i => `${i + 1}-${i + 2}岁`)],
+        imgs: [],
       }
     },
     computed: {
@@ -177,6 +180,26 @@
       clickSubmit() {
         console.log(this.form)
       },
+      clickChooseImage() {
+        uni.chooseImage({
+          success: async ret => {
+            console.log(ret)
+            this.$showLoading('上传中...')
+            let temp_path = ret.tempFilePaths[0]
+            try {
+              let img = await this.$av.upload(temp_path)
+              console.log(img)
+              this.cover_img = img.get('url')
+            } catch (e) {
+              //TODO handle the exception
+              this.$showToast('上传失败')
+            }
+          },
+          complete: () => {
+            uni.hideLoading()
+          },
+        })
+      },
     }
   }
 </script>
@@ -196,7 +219,7 @@
     height: 88upx;
     border-bottom: 2rpx solid #eee;
   }
-  
+
   .cell picker {
     margin-right: 80upx;
   }
