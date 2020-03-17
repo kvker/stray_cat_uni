@@ -73,6 +73,9 @@
 </script>
 
 <style>
+  view {
+    box-sizing: content-box;
+  }
   .login-form {
     margin: -9px 10px 0 10px;
     height: 200px;

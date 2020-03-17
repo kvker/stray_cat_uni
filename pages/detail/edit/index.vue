@@ -8,7 +8,7 @@
       <view class="flex jcsb aic cell">
         <view class="title">品种</view>
         <picker @change="bindPickerChange('category_idx', $event)" :value="category_idx" :range="categoryNameList">
-          <view class="uni-input">{{(jsonCategoryList[category_idx] || {}).name}}</view>
+          <view class="uni-input">{{jsonCategoryList[category_idx] && jsonCategoryList[category_idx].name}}</view>
         </picker>
         <image class="right-arrow" src="/static/img/right_arrow.png" mode="widthFix"></image>
       </view>

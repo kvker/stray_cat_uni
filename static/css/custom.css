@@ -81,8 +81,6 @@ input,
 textarea {
   cursor: text;
   padding: var(--main_gap);
-  width: var(--main_length);
-  height: var(--main_size);
   border: var(--main_line);
   border-radius: var(--main_radius);
 }
