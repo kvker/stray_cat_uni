@@ -162,6 +162,10 @@ button:after {
   flex-direction: column;
 }
 
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
 .flex.jcfe,
 .flex-column.jcfe {
   justify-content: flex-end;

@@ -199,4 +199,11 @@ export default {
     }
     return label
   },
+  /**
+   * 猫品种转换
+   */
+  getCategoryLabel(number) {
+    let categorys = ['其他', '奶牛', '橘猫', '三花', '狸花', '玳瑁', '白猫', '玄猫', '狸花白']
+    return categorys[number] || '其他'
+  },
 }
