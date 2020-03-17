@@ -104,7 +104,7 @@
         if (this.detail.id) {
           let json = this.detail.toJSON()
           json.age_label = json.age || '未知'
-          json.sex_label = json.jueyu_status ? (json.jueyu_status === 1 ? '公' : '未知') : '母'
+          json.sex_label = json.sex ? (json.sex === 1 ? '母' : '公') : '未知'
           json.quchong_outer_label = json.quchong_outer ? this.$util.formatDate(json.quchong_outer, 'YY/MM/DD') : '未驱虫'
           json.quchong_inner_label = json.quchong_inner ? this.$util.formatDate(json.quchong_inner, 'YY/MM/DD') : '未驱虫'
           json.category_label = this.$util.getCategoryLabel(json.category)

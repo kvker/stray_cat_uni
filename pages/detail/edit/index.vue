@@ -20,6 +20,13 @@
         <image class="right-arrow" src="/static/img/right_arrow.png" mode="widthFix"></image>
       </view>
       <view class="flex jcsb aic cell">
+        <view class="title">性别</view>
+        <picker @change="bindPickerChange('sex_idx', $event)" :value="sex_idx" :range="sex_list">
+          <view class="uni-input">{{sex_list[sex_idx]}}</view>
+        </picker>
+        <image class="right-arrow" src="/static/img/right_arrow.png" mode="widthFix"></image>
+      </view>
+      <view class="flex jcsb aic cell">
         <view class="title">是否绝育</view>
         <radio-group @change="changeRadio('jueyu_status', $event)">
           <label class="radio">
@@ -121,9 +128,11 @@
         waiguan: '',
         category_list: [],
         category_idx: 0,
-        age_idx: 0,
         lingyang_list: [0, 1, 2, 3, 4].map(i => this.$util.getLingyangLevelLabel(i)),
         lingyang_idx: 0,
+        sex_idx: 0,
+        sex_list: ['未知', '母', '公'],
+        age_idx: 0,
         age_list: ['未知', '0-3个月', '3-6个月', '6-12个月', ...Array.from({
           length: 17
         }, (i, idx) => idx).map(i => `${i + 1}-${i + 2}岁`)],
@@ -136,6 +145,7 @@
         let form = {
           name: this.name,
           age: +this.age_idx,
+          sex: +this.sex_idx,
           category: +this.category_idx,
           jueyu_status: +this.jueyu_status,
           cover_img: this.cover_img,
@@ -144,6 +154,7 @@
           xingge: this.xingge,
           waiguan: this.waiguan,
           lingyang_level: +this.lingyang_idx,
+          owner: this.$av.currentUser(),
         }
         if (this.quchong_inner) {
           form.quchong_inner = this.$util.dayjs(this.quchong_inner).toDate()
@@ -191,6 +202,7 @@
         this.name = detail.name
         this.category_idx = detail.category
         this.age_idx = detail.age
+        this.sex_idx = detail.sex
         this.jueyu_status = detail.jueyu_status
         this.lingyang_idx = detail.lingyang_level
         this.quchong_inner = this.$util.formatDate(detail.quchong_inner)
@@ -302,7 +314,11 @@
         }
         console.log(this.form)
         try {
-          await this.$av.create('Cat', this.form)
+          if (this.is_edit) {
+            await this.$av.update('Cat', this.objectId, this.form)
+          } else {
+            await this.$av.create('Cat', this.form)
+          }
           this.$showToast('上传成功', 'success')
           setTimeout(() => {
             uni.navigateBack()
