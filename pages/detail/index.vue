@@ -84,8 +84,11 @@
         </view>
       </view> -->
     </template>
-    <navigator :url="`/pages/detail/edit/index?edit=${is_self ? `true&objectId=${objectId}` : ''}`" class="fab">
+    <navigator v-if="is_self" :url="`/pages/detail/edit/index?edit=true&objectId=${objectId}`" class="fab" style="bottom: 120upx">
       <image src="/static/img/cat.png" mode="aspectFill"></image>
+    </navigator>
+    <navigator url="/pages/detail/edit/index" class="fab flex aic jcc">
+      +
     </navigator>
   </view>
 </template>
@@ -180,11 +183,18 @@
     position: fixed;
     right: 20upx;
     bottom: 20upx;
+    width: 80upx;
+    height: 80upx;
+    font-size: 48upx;
+    border: 2upx solid #EEEEEE;
+    border-radius: 50%;
+    background-color: white;
+    box-shadow: 0 0 4upx black;
   }
   
   .fab image {
-    width: 80upx;
-    height: 80upx;
+    width: 100%;
+    height: 100%;
     border-radius: 50%;
   }
 </style>
