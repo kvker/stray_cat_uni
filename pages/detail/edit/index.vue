@@ -7,10 +7,16 @@
       </view>
       <view class="flex jcsb aic cell">
         <view class="title">品种</view>
+        <picker @change="bindPickerChange('category_idx', $event)" :value="category_idx" :range="categoryNameList">
+          <view class="uni-input">{{(jsonCategoryList[category_idx] || {}).name}}</view>
+        </picker>
         <image class="right-arrow" src="/static/img/right_arrow.png" mode="widthFix"></image>
       </view>
       <view class="flex jcsb aic cell">
         <view class="title">猫龄</view>
+        <picker @change="bindPickerChange('age_idx', $event)" :value="age_idx" :range="age_list">
+          <view class="uni-input">{{age_list[age_idx]}}</view>
+        </picker>
         <image class="right-arrow" src="/static/img/right_arrow.png" mode="widthFix"></image>
       </view>
       <view class="flex jcsb aic cell">
@@ -26,6 +32,9 @@
       </view>
       <view class="flex jcsb aic cell">
         <view class="title">适合领养度</view>
+        <picker @change="bindPickerChange('lingyang_idx', $event)" :value="lingyang_idx" :range="lingyang_list">
+          <view class="uni-input">{{lingyang_list[lingyang_idx]}}</view>
+        </picker>
         <image class="right-arrow" src="/static/img/right_arrow.png" mode="widthFix"></image>
       </view>
       <view class="flex jcsb aic cell">
@@ -110,6 +119,12 @@
         address: '',
         xingge: '',
         waiguan: '',
+        category_list: [],
+        category_idx: 0,
+        age_idx: 0,
+        lingyang_list: [0, 1, 2, 3, 4].map(i => this.$util.getLingyangLevelLabel(i)),
+        lingyang_idx: 0,
+        age_list: ['未知', '0-3个月', '3-6个月', '6-12个月', ...Array.from({length: 17}, (i, idx) => idx).map(i => `${i + 1}-${i + 2}岁`)],
       }
     },
     computed: {
@@ -124,16 +139,35 @@
           xingge: this.xingge,
           waiguan: this.waiguan,
         }
-        if(this.quchong_inner) {
+        if (this.quchong_inner) {
           form.quchong_inner = this.$util.dayjs(this.quchong_inner).toDate()
         }
-        if(this.quchong_outer) {
+        if (this.quchong_outer) {
           form.quchong_outer = this.$util.dayjs(this.quchong_outer).toDate()
         }
         return form
-      }
+      },
+      jsonCategoryList() {
+        return [{
+          id: 0,
+          name: '其他'
+        }, ...this.category_list.map(i => i.toJSON())]
+      },
+      categoryNameList() {
+        return this.jsonCategoryList.map(i => i.name)
+      },
+    },
+    onLoad(options) {
+      this.getCategoryList()
     },
     methods: {
+      async getCategoryList() {
+        let list = await this.$av.read('Category')
+        this.category_list = list
+      },
+      bindPickerChange(type, e) {
+        this[type] = e.detail.value
+      },
       changeRadio(type, e) {
         this[type] = e.detail.value
       },
@@ -158,8 +192,13 @@
   }
 
   .cell {
+    position: relative;
     height: 88upx;
     border-bottom: 2rpx solid #eee;
+  }
+  
+  .cell picker {
+    margin-right: 80upx;
   }
 
   input {
@@ -172,6 +211,10 @@
   }
 
   .right-arrow {
+    position: absolute;
+    top: 50%;
+    right: 20upx;
+    transform: translateY(-50%);
     width: 18rpx;
   }
 

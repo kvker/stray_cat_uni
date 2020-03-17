@@ -182,7 +182,7 @@ export default {
    * 等级数字转文字
    * @param {number} level传入的等级
    */
-  getlingyangLevelLabel(level) {
+  getLingyangLevelLabel(level) {
     let label
     switch(level) {
       case 0: label = '超不适合'
