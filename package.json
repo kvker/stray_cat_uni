@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "dayjs": "^1.8.23",
-    "leancloud-storage": "^4.3.1"
+    "dayjs": "^1.8.23"
   }
 }
