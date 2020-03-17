@@ -81,14 +81,14 @@
     <view class="box mt-20">
       <view class="card-box pt-40">
         <view class="title">上传猫封面</view>
-        <view class="flex jcc aic cover-img-box mt-20" @click="clickChooseImage">
+        <view class="flex jcc aic cover-img-box mt-20" @click="clickChooseCoverImg">
           <image :src="cover_img" mode="aspectFit"></image>
         </view>
       </view>
       <view class="card-box pb-20">
         <view class="title mt-40">上传猫照片(要能看到清晰猫脸的全身照)</view>
         <view class="flex flex-wrap imgs-box mt-20">
-          <view class="flex jcc aic add-icon"></view>
+          <view class="flex jcc aic add-icon" @click="clickChooseImgs"></view>
           <image v-for="(url, idx) in imgs" :key="idx" class="ml-20" :src="url" mode="aspectFit"></image>
         </view>
       </view>
@@ -164,26 +164,52 @@
       this.getCategoryList()
     },
     methods: {
+      /**
+       * 获取分类列表
+       */
       async getCategoryList() {
         let list = await this.$av.read('Category')
         this.category_list = list
       },
+      /**
+       * 点击所有picker事件
+       * @param {Object} type
+       * @param {Object} e
+       */
       bindPickerChange(type, e) {
         this[type] = e.detail.value
       },
+      /**
+       * 点击所有radio
+       * @param {Object} type
+       * @param {Object} e
+       */
       changeRadio(type, e) {
         this[type] = e.detail.value
       },
+      /**
+       * 日期 变化
+       * @param {Object} type
+       * @param {Object} e
+       */
       bindDateChange(type, e) {
         this[type] = e.detail.value
       },
+      /**
+       * 提交
+       */
       clickSubmit() {
         console.log(this.form)
       },
-      clickChooseImage() {
+      /**
+       * 点击封面图上传
+       */
+      clickChooseCoverImg() {
         uni.chooseImage({
+          count: 1,
+          sizeType: ['compressed'],
           success: async ret => {
-            console.log(ret)
+            // console.log(ret)
             this.$showLoading('上传中...')
             let temp_path = ret.tempFilePaths[0]
             try {
@@ -192,6 +218,43 @@
               this.cover_img = img.get('url')
             } catch (e) {
               //TODO handle the exception
+              this.$showToast('上传失败')
+            }
+          },
+          complete: () => {
+            console.log(e)
+            uni.hideLoading()
+          },
+        })
+      },
+      /**
+       * 上传猫照
+       */
+      clickChooseImgs() {
+        uni.chooseImage({
+          count: 4,
+          sizeType: ['compressed'],
+          success: async ret => {
+            // console.log(ret)
+            this.$showLoading('上传中...')
+            let length = ret.tempFilePaths.length
+            if(length > 4) {
+              this.$showToast('太多了')
+              return
+            }
+            let imgs = []
+            try {
+              let i = 0
+              for (let temp_path of ret.tempFilePaths) {
+                this.$showToast(`进度: 0/${length}`)
+                let img = await this.$av.upload(temp_path)
+                this.$showToast(`进度: ${i + 1}/${length}`)
+                imgs.push(img.get('url'))
+                i++
+              }
+              this.imgs = imgs
+            } catch (e) {
+              console.log(e)
               this.$showToast('上传失败')
             }
           },

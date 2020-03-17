@@ -9,6 +9,7 @@ Vue.prototype.$util = util
 Vue.prototype.$showToast = function(title = '错误') {
   uni.showToast({
     title,
+    icon: 'none',
   })
 }
 Vue.prototype.$showLoading = function(title = '进行中...') {
