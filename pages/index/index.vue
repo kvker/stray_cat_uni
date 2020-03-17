@@ -22,6 +22,7 @@
       jsonList() {
         return this.list.map(i => {
           let json = i.toJSON()
+          json.id = json.sex ? (json.sex === 1 ? 'M'+json.id : 'G'+ json.id) : 'X'+ json.id
           json.quchong_outer_label = json.quchong_outer ? this.$util.formatDate(json.quchong_outer, 'YY/MM/DD') :
             '未驱虫'
           json.quchong_inner_label = json.quchong_inner ? this.$util.formatDate(json.quchong_inner, 'YY/MM/DD') :
