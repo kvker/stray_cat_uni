@@ -100,13 +100,16 @@
         objectId: '',
         detail: {},
         is_self: false,
+        age_list: ['未知', '0-3个月', '3-6个月', '6-12个月', ...Array.from({
+          length: 17
+        }, (i, idx) => idx).map(i => `${i + 1}-${i + 2}岁`)],
       }
     },
     computed: {
       jsonDetail() {
         if (this.detail.id) {
           let json = this.detail.toJSON()
-          json.age_label = json.age || '未知'
+          json.age_label = this.age_list[json.age]
           json.sex_label = json.sex ? (json.sex === 1 ? '母' : '公') : '未知'
           json.quchong_outer_label = json.quchong_outer ? this.$util.formatDate(json.quchong_outer, 'YY/MM/DD') : '未驱虫'
           json.quchong_inner_label = json.quchong_inner ? this.$util.formatDate(json.quchong_inner, 'YY/MM/DD') : '未驱虫'
