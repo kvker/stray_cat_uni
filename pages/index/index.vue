@@ -1,7 +1,7 @@
 <template>
-  <scroll-view scroll-y style="height: 100%;" class="container">
+  <view class="container">
     <CatCard v-for="(item, idx) in jsonList" :key="item.objectId" :item="item"></CatCard>
-  </scroll-view>
+  </view>
 </template>
 
 <script>
@@ -39,6 +39,15 @@
     onShow() {
       this.getList()
     },
+    onPullDownRefresh() {
+      this.page = 0
+      this.list = []
+      this.getList()
+    },
+    onReachBottom() {
+      this.page = this.page + 1
+      this.getList()
+    },
     onShareAppMessage() {
       
     },
@@ -61,7 +70,8 @@
           q.limit(10)
           q.skip(page * 10)
         })
-        this.list = list
+        uni.stopPullDownRefresh()
+        this.list = [...this.list, ...list]
       },
     }
   }

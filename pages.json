@@ -3,7 +3,8 @@
     {
       "path": "pages/index/index",
       "style": {
-        "navigationBarTitleText": "猫咪档案"
+        "navigationBarTitleText": "猫咪档案",
+        "enablePullDownRefresh": true
       }
     },
     {
