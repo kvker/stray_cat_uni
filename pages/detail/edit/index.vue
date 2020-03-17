@@ -93,12 +93,12 @@
         </view>
       </view>
     </view>
-    <view class="box">
+    <!-- <view class="box">
       <view class="flex jcsb aic cell mt-20">
         <view class="title">小区</view>
         <image class="right-arrow" src="/static/img/right_arrow.png" mode="widthFix"></image>
       </view>
-    </view>
+    </view> -->
     <view class="button" @click="clickSubmit">确认上传</view>
   </view>
 </template>
