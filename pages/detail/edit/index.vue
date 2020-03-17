@@ -27,6 +27,13 @@
         <image class="right-arrow" src="/static/img/right_arrow.png" mode="widthFix"></image>
       </view>
       <view class="flex jcsb aic cell">
+        <view class="title">适合领养度</view>
+        <picker @change="bindPickerChange('lingyang_idx', $event)" :value="lingyang_idx" :range="lingyang_list">
+          <view class="uni-input">{{lingyang_list[lingyang_idx]}}</view>
+        </picker>
+        <image class="right-arrow" src="/static/img/right_arrow.png" mode="widthFix"></image>
+      </view>
+      <view class="flex jcsb aic cell">
         <view class="title">是否绝育</view>
         <radio-group @change="changeRadio('jueyu_status', $event)">
           <label class="radio">
@@ -36,13 +43,6 @@
             <radio color="#394F3E" value="1" :checked="jueyu_status === '1'">已绝育</radio>
           </label>
         </radio-group>
-      </view>
-      <view class="flex jcsb aic cell">
-        <view class="title">适合领养度</view>
-        <picker @change="bindPickerChange('lingyang_idx', $event)" :value="lingyang_idx" :range="lingyang_list">
-          <view class="uni-input">{{lingyang_list[lingyang_idx]}}</view>
-        </picker>
-        <image class="right-arrow" src="/static/img/right_arrow.png" mode="widthFix"></image>
       </view>
       <view class="flex jcsb aic cell">
         <view class="title">体内驱虫</view>
@@ -87,17 +87,17 @@
     </view>
     <view class="box mt-20">
       <view class="card-box pt-40">
-        <view class="title">上传猫封面</view>
+        <view class="title">上传猫封面(要能看到清晰猫脸的全身照)</view>
         <view class="flex jcc aic cover-img-box mt-20" @click="clickChooseCoverImg">
-          <image :src="cover_img" mode="aspectFit"></image>
+          <image :src="cover_img" mode="aspectFill"></image>
         </view>
       </view>
       <view class="card-box pb-20">
-        <view class="title mt-40">上传猫照片(要能看到清晰猫脸的全身照)</view>
+        <view class="title mt-40">上传猫照片(细节照,最多4张)</view>
         <view class="flex flex-wrap imgs-box mt-20">
           <view class="flex jcc aic add-icon" @click="clickChooseImgs"></view>
           <view class="img-box" v-for="(url, idx) in imgs" :key="idx">
-            <image class="ml-20" :src="url" mode="aspectFit" @click="clickChangeImg(idx)"></image>
+            <image class="ml-20" :src="url" mode="aspectFill" @click="clickChangeImg(idx)"></image>
             <text class="delete" @click="deleteImg(idx)">x</text>
           </view>
         </view>
@@ -277,18 +277,18 @@
           success: async ret => {
             // console.log(ret)
             this.$showLoading('上传中...')
-            let length = ret.tempFilePaths.length
+            let length = ret.tempFilePaths.length + this.imgs.length
             if (length > 4) {
               this.$showToast('太多了')
               return
             }
-            let imgs = []
+            let imgs = this.imgs
             try {
               let i = 0
               for (let temp_path of ret.tempFilePaths) {
-                this.$showToast(`进度: 0/${length}`)
+                this.$showToast(`上传中...`)
                 let img = await this.$av.upload(temp_path)
-                this.$showToast(`进度: ${i + 1}/${length}`)
+                this.$showToast(`上传中...`)
                 imgs.push(img.get('url'))
                 i++
               }
@@ -371,6 +371,10 @@
 <style>
   page {
     background-color: #F4EFE9;
+  }
+  
+  .container {
+    padding-bottom: 100upx;
   }
 
   .box {
@@ -460,11 +464,11 @@
     font-size: 100upx;
     font-weight: 100;
   }
-  
+
   .img-box {
     position: relative;
   }
-  
+
   .delete {
     position: absolute;
     top: 0;

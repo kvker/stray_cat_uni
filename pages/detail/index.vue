@@ -55,8 +55,8 @@
             <text class="value ml-20">{{jsonDetail.lingyang_label}}</text>
           </view>
           <view class="flex aic f1 value-box">
-          <text class="title">居住地</text>
-          <text class="value ml-20">{{jsonDetail.address}}</text></view>
+            <text class="title">居住地</text>
+            <text class="value ml-20">{{jsonDetail.address}}</text></view>
         </view>
       </view>
       <view class="box mt-20">
@@ -84,10 +84,10 @@
         </view>
       </view> -->
     </template>
-    <navigator v-if="is_self" :url="`/pages/detail/edit/index?edit=true&objectId=${objectId}`" class="fab" style="bottom: 120upx">
+    <navigator v-if="is_self" :url="`/pages/detail/edit/index?edit=true&objectId=${objectId}`" class="fab" style="bottom: 200upx">
       <image src="/static/img/cat.png" mode="aspectFill"></image>
     </navigator>
-    <navigator url="/pages/detail/edit/index" class="fab flex aic jcc">
+    <navigator url="/pages/detail/edit/index" class="fab flex aic jcc btn" style="background-color: #394F3E;">
       +
     </navigator>
   </view>
@@ -111,11 +111,15 @@
           let json = this.detail.toJSON()
           json.age_label = this.age_list[json.age]
           json.sex_label = json.sex ? (json.sex === 1 ? '母' : '公') : '未知'
+          json.id = json.sex ? (json.sex === 1 ? 'M'+json.id : 'G'+ json.id) : 'X'+ json.id
           json.quchong_outer_label = json.quchong_outer ? this.$util.formatDate(json.quchong_outer, 'YY/MM/DD') : '未驱虫'
           json.quchong_inner_label = json.quchong_inner ? this.$util.formatDate(json.quchong_inner, 'YY/MM/DD') : '未驱虫'
           json.category_label = this.$util.getCategoryLabel(json.category)
           json.lingyang_label = this.$util.getLingyangLevelLabel(json.lingyang_level)
           json.jueyu_label = json.jueyu_status ? (json.jueyu_status === 1 ? '已绝育' : '未知') : '未绝育'
+          json.waiguan = json.waiguan || '暂时为空'
+          json.xingge = json.xingge || '暂时为空'
+          json.imgs = [json.cover_img, ...json.imgs]
           return json
         }
       }
@@ -163,14 +167,16 @@
     padding: 20upx 40upx;
   }
 
-  .title, .cell {
+  .title,
+  .cell {
     font-size: 32upx;
     font-family: PingFang SC;
     font-weight: 200;
     color: rgba(148, 148, 148, 1);
   }
 
-  .value, .content {
+  .value,
+  .content {
     font-size: 32upx;
     font-family: PingFang SC;
     color: rgba(56, 56, 56, 1);
@@ -184,20 +190,20 @@
     padding: 20upx 40upx 40upx;
     border-top: 2rpx solid #eee;
   }
-  
+
   .fab {
     position: fixed;
-    right: 20upx;
-    bottom: 20upx;
+    right: 40upx;
+    bottom: 80upx;
     width: 80upx;
     height: 80upx;
     font-size: 48upx;
-    border: 2upx solid #EEEEEE;
     border-radius: 50%;
     background-color: white;
     box-shadow: 0 0 4upx black;
+    color: white;
   }
-  
+
   .fab image {
     width: 100%;
     height: 100%;

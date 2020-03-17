@@ -55,11 +55,11 @@
   }
   
   .box {
-    padding: 20rpx 40upx 0;
+    padding: 20upx 40upx 20upx;
   }
   
   .box:last-child {
-    padding: 20rpx 40upx;
+    padding: 20upx 40upx 40upx;
   }
 
   .title {
@@ -67,11 +67,13 @@
     font-family: PingFang SC;
     font-weight: 200;
     color: rgba(148, 148, 148, 1);
+    line-height: 32upx;
   }
 
   .value {
     font-size: 32rpx;
     font-family: PingFang SC;
     color: rgba(56, 56, 56, 1);
+    line-height: 32upx;
   }
 </style>
