@@ -96,7 +96,7 @@
         <view class="title mt-40">上传猫照片(要能看到清晰猫脸的全身照)</view>
         <view class="flex flex-wrap imgs-box mt-20">
           <view class="flex jcc aic add-icon" @click="clickChooseImgs"></view>
-          <image v-for="(url, idx) in imgs" :key="idx" class="ml-20" :src="url" mode="aspectFit"></image>
+          <image v-for="(url, idx) in imgs" :key="idx" class="ml-20" :src="url" mode="aspectFit" @click="clickChangeImg(idx)"></image>
         </view>
       </view>
     </view>
@@ -290,6 +290,32 @@
                 i++
               }
               this.imgs = imgs
+            } catch (e) {
+              console.log(e)
+              this.$showToast('上传失败')
+            }
+          },
+          complete: () => {
+            uni.hideLoading()
+          },
+        })
+      },
+      /**
+       * 替换imgs
+       * @param {Object} idx 图片顺序索引
+       */
+      clickChangeImg(idx) {
+        uni.chooseImage({
+          count: 1,
+          sizeType: ['compressed'],
+          success: async ret => {
+            // console.log(ret)
+            this.$showLoading('上传中...')
+            let temp_path = ret.tempFilePaths[0]
+            try {
+              let img = await this.$av.upload(temp_path)
+              console.log(img)
+              this.imgs.splice(idx, 1, img.get('url'))
             } catch (e) {
               console.log(e)
               this.$showToast('上传失败')
