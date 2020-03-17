@@ -84,7 +84,7 @@
         </view>
       </view> -->
     </template>
-    <navigator url="/pages/detail/edit/index" class="fab">
+    <navigator :url="`/pages/detail/edit/index?edit=${is_self ? `true&objectId=${objectId}` : ''}`" class="fab">
       <image src="/static/img/cat.png" mode="aspectFill"></image>
     </navigator>
   </view>
@@ -96,6 +96,7 @@
       return {
         objectId: '',
         detail: {},
+        is_self: false,
       }
     },
     computed: {
@@ -126,6 +127,8 @@
         })
         // console.log(list[0])
         this.detail = list[0]
+        // 判断是不是自己的猫
+        this.is_self = this.detail.get('owner').get('objectId') === this.$av.currentUser().get('objectId')
         uni.setNavigationBarTitle({
           title: `${this.detail.get('name')}的档案`,
         })

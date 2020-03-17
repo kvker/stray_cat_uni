@@ -128,6 +128,7 @@
           length: 17
         }, (i, idx) => idx).map(i => `${i + 1}-${i + 2}岁`)],
         imgs: [],
+        is_edit: false,
       }
     },
     computed: {
@@ -163,6 +164,11 @@
       },
     },
     onLoad(options) {
+      console.log(options)
+      this.is_edit = !!options.edit
+      if (this.is_edit) {
+        this.objectId = options.objectId
+      }
       this.getCategoryList()
     },
     methods: {
@@ -172,6 +178,30 @@
       async getCategoryList() {
         let list = await this.$av.read('Category')
         this.category_list = list
+        if (this.is_edit) {
+          this.getDetail(this.objectId)
+        }
+      },
+      async getDetail(objectId = this.objectId) {
+        let list = await this.$av.read('Cat', q => {
+          q.equalTo('objectId', objectId)
+        })
+        // console.log(list[0])
+        let detail = list[0].toJSON()
+        this.name = detail.name
+        this.category_idx = detail.category
+        this.age_idx = detail.age
+        this.jueyu_status = detail.jueyu_status
+        this.lingyang_idx = detail.lingyang_level
+        this.quchong_inner = this.$util.formatDate(detail.quchong_inner)
+        this.quchong_inner_status = detail.quchong_inner ? '1' : '0'
+        this.quchong_outer = this.$util.formatDate(detail.quchong_outer)
+        this.quchong_outer_status = detail.quchong_outer ? '1' : '0'
+        this.waiguan = detail.waiguan
+        this.xingge = detail.xingge
+        this.address = detail.address
+        this.cover_img = detail.cover_img
+        this.imgs = detail.imgs
       },
       /**
        * 点击所有picker事件
@@ -266,7 +296,7 @@
           name,
           cover_img,
         } = this.form
-        if(!name.trim() || !cover_img.trim()) {
+        if (!name.trim() || !cover_img.trim()) {
           this.$showToast('内容不全')
           return
         }
