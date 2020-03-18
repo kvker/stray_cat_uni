@@ -41,14 +41,10 @@
     },
     onLoad() {},
     onShow() {
-      this.page = 0
-      this.list = []
-      this.getList()
+      this.refresh()
     },
     onPullDownRefresh() {
-      this.page = 0
-      this.list = []
-      this.getList()
+      this.refresh()
     },
     onReachBottom() {
       this.page = this.page + 1
@@ -68,6 +64,14 @@
         })
         uni.stopPullDownRefresh()
         this.list = [...this.list, ...list]
+      },
+      /**
+       * 刷新列表
+       */
+      refresh() {
+        this.page = 0
+        this.list = []
+        this.getList()
       },
       touchStart() {
         this.time_length = 0
