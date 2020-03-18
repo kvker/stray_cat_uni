@@ -1,5 +1,5 @@
 <template>
-  <view class="container">
+  <view class="container" @touchstart="touchStart" @touchend="touchEnd" >
     <CatCard v-for="(item, idx) in jsonList" :key="item.objectId" :item="item"></CatCard>
   </view>
 </template>
@@ -16,6 +16,12 @@
         list: [],
         page: 0,
         size: 10,
+        // 记录触控时间
+        time_length: 0,
+        // 去登录页的时长
+        login_time_length: this.$is_dev ? 1 : 5,
+        // 触控时间计时器
+        time_interval: null,
       }
     },
     computed: {
@@ -34,7 +40,6 @@
       }
     },
     onLoad() {
-      this.checkLogin()
     },
     onShow() {
       this.getList()
@@ -53,16 +58,6 @@
     },
     methods: {
       /**
-       * 检测登录状态, 没登录就踢到登录注册页
-       */
-      checkLogin() {
-        if (!this.$av.currentUser()) {
-          uni.reLaunch({
-            url: '/pages/login/index'
-          })
-        }
-      },
-      /**
        * 获取列表数据
        */
       async getList(page = this.page) {
@@ -72,6 +67,22 @@
         })
         uni.stopPullDownRefresh()
         this.list = [...this.list, ...list]
+      },
+      touchStart() {
+        this.time_length = 0
+        this.time_interval = setInterval(() => {
+          this.time_length++
+          if(this.time_length >= this.login_time_length) {
+            uni.navigateTo({
+              url: '/pages/login/index'
+            })
+            this.touchEnd()
+          }
+        }, 1000)
+      },
+      touchEnd() {
+        this.time_length = 0
+        clearInterval(this.time_interval)
       },
     }
   }

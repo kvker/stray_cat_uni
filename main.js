@@ -3,9 +3,11 @@ import App from './App'
 import av from './static/js/av.js'
 import util from './static/js/util.js'
 
+
 Vue.config.productionTip = false
 Vue.prototype.$av = av
 Vue.prototype.$util = util
+Vue.prototype.$is_dev = process.env.NODE_ENV === 'development'
 Vue.prototype.$showToast = function(title = '错误', icon = 'none') {
   uni.showToast({
     title,

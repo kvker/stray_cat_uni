@@ -87,7 +87,7 @@
     <navigator v-if="is_self" :url="`/pages/detail/edit/index?edit=true&objectId=${objectId}`" class="fab" style="bottom: 200upx">
       <image src="/static/img/cat.png" mode="aspectFill"></image>
     </navigator>
-    <navigator url="/pages/detail/edit/index" class="fab flex aic jcc btn" style="background-color: #394F3E;">
+    <navigator v-if="is_admin" url="/pages/detail/edit/index" class="fab flex aic jcc btn" style="background-color: #394F3E;">
       +
     </navigator>
   </view>
@@ -99,6 +99,9 @@
       return {
         objectId: '',
         detail: {},
+        // 是否登录, 控制加号显示
+        is_admin: false,
+        // 是否自己, 控制编辑显示
         is_self: false,
         age_list: ['未知', '0-3个月', '3-6个月', '6-12个月', ...Array.from({
           length: 17
@@ -111,7 +114,7 @@
           let json = this.detail.toJSON()
           json.age_label = this.age_list[json.age]
           json.sex_label = json.sex ? (json.sex === 1 ? '母' : '公') : '未知'
-          json.id = json.sex ? (json.sex === 1 ? 'M'+json.id : 'G'+ json.id) : 'X'+ json.id
+          json.id = json.sex ? (json.sex === 1 ? 'M' + json.id : 'G' + json.id) : 'X' + json.id
           json.quchong_outer_label = json.quchong_outer ? this.$util.formatDate(json.quchong_outer, 'YY/MM/DD') : '未驱虫'
           json.quchong_inner_label = json.quchong_inner ? this.$util.formatDate(json.quchong_inner, 'YY/MM/DD') : '未驱虫'
           json.category_label = this.$util.getCategoryLabel(json.category)
@@ -131,7 +134,7 @@
       this.getDetail(this.objectId)
     },
     onShareAppMessage() {
-      
+
     },
     methods: {
       async getDetail(objectId = this.objectId) {
@@ -141,7 +144,14 @@
         // console.log(list[0])
         this.detail = list[0]
         // 判断是不是自己的猫
-        this.is_self = this.detail.get('owner').get('objectId') === this.$av.currentUser().get('objectId')
+        let current_user = this.$av.currentUser()
+        if (current_user) {
+          let role = (await current_user.getRoles())[0]
+          if (role) {
+            this.is_admin = role.get('name') === 'admin'
+            this.is_self = this.detail.get('owner').get('objectId') === current_user.get('objectId')
+          }
+        }
         uni.setNavigationBarTitle({
           title: `${this.detail.get('name')}的档案`,
         })
