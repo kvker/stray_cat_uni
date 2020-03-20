@@ -91,6 +91,9 @@
     <navigator v-if="is_admin" url="/pages/detail/edit/index" class="fab flex aic jcc btn" style="background-color: #394F3E;">
       +
     </navigator>
+    <navigator v-else url="/pages/login/index" class="fab flex aic jcc btn" style="background-color: #394F3E;">
+      +
+    </navigator>
     <!-- #endif -->
   </view>
 </template>

@@ -45,9 +45,13 @@
           try {
             let user = await this.$av.loginWithEmail(email, password)
             // console.log(user)
-            uni.reLaunch({
-              url: '/pages/index/index'
-            })
+            try{
+              uni.navigateBack()
+            }catch(e){
+              uni.reLaunch({
+                url: '/pages/index/index'
+              })
+            }
           } catch (e) {
             //TODO handle the exception
             this.$showToast('登录失败')
