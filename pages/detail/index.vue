@@ -84,12 +84,14 @@
         </view>
       </view> -->
     </template>
+    <!-- #ifndef MP -->
     <navigator v-if="is_self" :url="`/pages/detail/edit/index?edit=true&objectId=${objectId}`" class="fab" style="bottom: 200upx">
       <image src="/static/img/cat.png" mode="aspectFill"></image>
     </navigator>
     <navigator v-if="is_admin" url="/pages/detail/edit/index" class="fab flex aic jcc btn" style="background-color: #394F3E;">
       +
     </navigator>
+    <!-- #endif -->
   </view>
 </template>
 
