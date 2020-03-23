@@ -33,9 +33,11 @@
         })
       }
     },
-    onLoad() {},
+    onLoad() {
+			this.refresh()
+		},
     onShow() {
-      this.refresh()
+      // this.refresh()
     },
     onPullDownRefresh() {
       this.refresh()
@@ -57,12 +59,14 @@
           q.skip(page * 10)
         })
         uni.stopPullDownRefresh()
+				uni.hideToast()
         this.list = [...this.list, ...list]
       },
       /**
        * 刷新列表
        */
       refresh() {
+				this.$showToast('列表拉取...')
         this.page = 0
         this.list = []
         this.getList()

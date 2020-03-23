@@ -2,7 +2,7 @@
   <view class="container pb-20">
     <template v-if="detail.id">
       <swiper style="height: 600upx;" class="swiper" :indicator-dots="true" :autoplay="true" :duration="300">
-        <swiper-item style="height: 600upx;" v-for="(url, idx) in jsonDetail.imgs" :key="idx">
+        <swiper-item style="height: 600upx;" v-for="(url, idx) in jsonDetail.imgs" :key="idx" @click="previewImg(url, idx)">
           <view class="swiper-item uni-bg-red">
             <image class="w-100" style="height: 600upx;" :src="url" mode="aspectFill"></image>
           </view>
@@ -161,6 +161,12 @@
           title: `${this.detail.get('name')}的档案`,
         })
       },
+			previewImg(url, idx) {
+				uni.previewImage({
+					current: idx,
+					urls: this.jsonDetail.imgs,
+				})
+			},
     },
   }
 </script>
