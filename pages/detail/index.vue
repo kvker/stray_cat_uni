@@ -84,17 +84,6 @@
         </view>
       </view> -->
     </template>
-    <!-- #ifndef MP -->
-    <navigator v-if="is_self" :url="`/pages/detail/edit/index?edit=true&objectId=${objectId}`" class="fab" style="bottom: 200upx">
-      <image src="/static/img/cat.png" mode="aspectFill"></image>
-    </navigator>
-    <navigator v-if="is_admin" url="/pages/detail/edit/index" class="fab flex aic jcc btn" style="background-color: #394F3E;">
-      +
-    </navigator>
-    <navigator v-else url="/pages/login/index" class="fab flex aic jcc btn" style="background-color: #394F3E;">
-      +
-    </navigator>
-    <!-- #endif -->
   </view>
 </template>
 
@@ -104,10 +93,6 @@
       return {
         objectId: '',
         detail: {},
-        // 是否登录, 控制加号显示
-        is_admin: false,
-        // 是否自己, 控制编辑显示
-        is_self: false,
         age_list: ['未知', '0-3个月', '3-6个月', '6-12个月', ...Array.from({
           length: 17
         }, (i, idx) => idx).map(i => `${i + 1}-${i + 2}岁`)],
@@ -139,7 +124,10 @@
       this.getDetail(this.objectId)
     },
     onShareAppMessage() {
-
+      return {
+        title: '花名: ' + this.jsonDetail.name,
+        imageUrl: this.jsonDetail.imgs[0],
+      }
     },
     methods: {
       async getDetail(objectId = this.objectId) {
@@ -148,25 +136,16 @@
         })
         // console.log(list[0])
         this.detail = list[0]
-        // 判断是不是自己的猫
-        let current_user = this.$av.currentUser()
-        if (current_user) {
-          let role = (await current_user.getRoles())[0]
-          if (role) {
-            this.is_admin = role.get('name') === 'admin'
-            this.is_self = this.detail.get('owner').get('objectId') === current_user.get('objectId')
-          }
-        }
         uni.setNavigationBarTitle({
           title: `${this.detail.get('name')}的档案`,
         })
       },
-			previewImg(url, idx) {
-				uni.previewImage({
-					current: idx,
-					urls: this.jsonDetail.imgs,
-				})
-			},
+      previewImg(url, idx) {
+        uni.previewImage({
+          current: idx,
+          urls: this.jsonDetail.imgs,
+        })
+      },
     },
   }
 </script>

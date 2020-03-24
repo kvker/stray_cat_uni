@@ -3,32 +3,16 @@
     {
       "path": "pages/index/index",
       "style": {
-        "navigationBarTitleText": "猫咪档案",
         "enablePullDownRefresh": true
       }
     }, {
       "path": "pages/detail/index",
       "style": {}
     }
-    // #ifndef MP
-    ,
-    {
-      "path": "pages/login/index",
-      "style": {
-        "navigationBarTitleText": "管理员登录"
-      }
-    }
-    , {
-      "path": "pages/detail/edit/index",
-      "style": {
-        "navigationBarTitleText": "上传猫信息"
-      }
-    }
-    // #endif
   ],
   "globalStyle": {
     "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "猫咪档案",
+    "navigationBarTitleText": "街猫档案",
     "navigationBarBackgroundColor": "#F8F8F8",
     "backgroundColor": "#F8F8F8"
   }
