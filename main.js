@@ -3,7 +3,6 @@ import App from './App'
 import av from './static/js/av.js'
 import util from './static/js/util.js'
 
-
 Vue.config.productionTip = false
 Vue.prototype.$av = av
 Vue.prototype.$util = util
