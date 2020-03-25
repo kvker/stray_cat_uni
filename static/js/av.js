@@ -67,7 +67,11 @@ export default {
     let query = new AV.Query(classs)
     // 如果需要额外设置条件，则通过传入这个函数处理
     if(cbForQuery) {
-      cbForQuery(query)
+      // 如果是组合搜索，替换处理
+      let temp_q = cbForQuery(query)
+      if(temp_q) {
+        query = temp_q
+      }
     }
     return query.find()
   },

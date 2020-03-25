@@ -2,7 +2,8 @@ import dayjs from 'dayjs'
 
 // 功能函数临时储存器
 let doLastTimeout, doLastOperates = []
-let timeout = 500
+// 超时时间
+const timeout = 500
 
 export default {
   dayjs,
@@ -17,7 +18,7 @@ export default {
     }
     clearTimeout(doLastTimeout)
     doLastTimeout = setTimeout(() => {
-      let lastOperate = doLastOperates[doLastOperates.length - 1]
+      const lastOperate = doLastOperates[doLastOperates.length - 1]
       lastOperate()
       doLastOperates = []
       clearTimeout(doLastTimeout)
@@ -36,7 +37,7 @@ export default {
     }
     if (!doLastTimeout) {
       doLastTimeout = setTimeout(() => {
-        let lastOperate = doLastOperates[doLastOperates.length - 1]
+        const lastOperate = doLastOperates[doLastOperates.length - 1]
         lastOperate()
         doLastOperates = []
         clearTimeout(doLastTimeout)
@@ -53,9 +54,9 @@ export default {
   pointLeftNumberLength(num, length = 2) {
     if(typeof(num) === 'number') {
       let numStr = String(num)
-      let leftLength = numStr.split('.')[0].length
+      const leftLength = numStr.split('.')[0].length
       if(length > leftLength) {
-        let lengthCut = length - leftLength
+        const lengthCut = length - leftLength
         let zeroStr = Array.from({length: lengthCut}, () => '0').join('')
         numStr = zeroStr + numStr
       }
@@ -77,9 +78,9 @@ export default {
    * @param {any} time 时间
    */
   formatDateDayByDay(time) {
-    let cur = dayjs()
-    let diff = dayjs(time).diff(cur, 'day')
-    console.log(diff)
+    const cur = dayjs()
+    const diff = dayjs(time).diff(cur, 'day')
+    // console.log(diff)
     if (Math.abs(diff) > 2) {
       return dayjs(time).format('YYYY-MM-DD')
     } else {
@@ -113,27 +114,6 @@ export default {
     const regexp = new RegExp(`^(.{${start}}).{${length}}(.*)$`, 'g')
     return str.replace(regexp, `$1${Array.from({length}, () => '*').join('')}$2`)
   },
-  setCookie(cname, cvalue, exdays) {
-    var d = new Date();
-    d.setTime(d.getTime() + (exdays*24*60*60*1000));
-    var expires = "expires="+ d.toUTCString();
-    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-  },
-  getCookie(cname) {
-    var name = cname + "=";
-    var decodedCookie = decodeURIComponent(document.cookie);
-    var ca = decodedCookie.split(';');
-    for(var i = 0; i <ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0) == ' ') {
-            c = c.substring(1);
-        }
-        if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
-        }
-    }
-    return "";
-  },
   /**
    * 获取当前页面
    */
@@ -164,14 +144,13 @@ export default {
    * @param {string} path 解析的链接
    */
   getPathParams(path) {
-    let search = path.split('?')[1]
+    const search = path.split('?')[1]
     if (search) {
-      let key_value_list = search.split('&')
-      let obj = {}
-      key_value_list.map(key_value => {
+      const key_value_list = search.split('&')
+      const obj = {}
+      key_value_list.forEach(key_value => {
         let temp_arr = key_value.split('=')
         obj[temp_arr[0]] = temp_arr[1]
-        return obj
       })
       return obj
     } else {
@@ -203,7 +182,7 @@ export default {
    * 猫品种转换
    */
   getCategoryLabel(number) {
-    let categorys = ['其他', '奶牛', '橘猫', '三花', '狸花', '玳瑁', '白猫', '玄猫', '狸花白']
+    const categorys = ['其他', '奶牛', '橘猫', '三花', '狸花', '玳瑁', '白猫', '玄猫', '狸花白']
     return categorys[number] || '其他'
   },
 }
