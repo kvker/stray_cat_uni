@@ -1,16 +1,14 @@
 # 街猫档案
 
+一款Uni-APP与LeanCloud一起快速开发的大前端公益项目，迎合当前的Serverless风。
+
+> 开源大家一起优化，添砖加瓦
+
 ![预览](https://img-blog.csdnimg.cn/20200326140609881.gif)
 
 《猫色》是纯公益项目，让大家可以爱猫护猫，云吸猫，互相协助养猫。
 
 由于我们是个人开发者，《猫色》完整项目在小程序上很多资质我们目前欠缺，所以应急先拆分一个《街猫档案》出来。
-
-## 学习文档
-
-[总说明](https://gitee.com/kvker/stray_cat/wikis/pages)
-
-[首页](https://gitee.com/kvker/stray_cat/wikis/pages?sort_id=2038399&doc_id=597550)
 
 ## 介绍
 
@@ -21,3 +19,9 @@
 ## 运行
 
 HBuilderX下运行即可。
+
+## 学习文档
+
+[总览](https://gitee.com/kvker/stray_cat/wikis/pages)
+
+[首页](https://gitee.com/kvker/stray_cat/wikis/pages?sort_id=2038399&doc_id=597550)
