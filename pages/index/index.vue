@@ -1,6 +1,6 @@
 <template>
   <view class="container">
-    <CatCard v-for="(item, idx) in jsonList" :key="item.objectId" :item="item"></CatCard>
+    <cat-card v-for="(item, idx) in jsonList" :key="item.objectId" :item="item"></cat-card>
   </view>
 </template>
 
@@ -43,7 +43,7 @@
       this.refresh()
     },
     onReachBottom() {
-      this.page = this.page + 1
+      this.page += 1
       this.getList()
     },
     onShareAppMessage() {
@@ -59,6 +59,7 @@
         let list = await this.$av.read('Cat', q => {
           q.limit(10)
           q.skip(page * 10)
+          q.descending('createdAt')
         })
         uni.stopPullDownRefresh()
         uni.hideToast()
