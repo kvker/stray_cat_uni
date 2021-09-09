@@ -6,7 +6,7 @@
         "enablePullDownRefresh": true
       }
     }, {
-      "path": "pages/detail/index",
+      "path": "pages/detail/detail",
       "style": {}
     }
   ],

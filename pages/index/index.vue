@@ -1,16 +1,11 @@
 <template>
   <view class="container">
-    <cat-card v-for="(item, idx) in jsonList" :key="item.objectId" :item="item"></cat-card>
+    <card_cat v-for="(item, idx) in jsonList" :key="item.objectId" :item="item"></card_cat>
   </view>
 </template>
 
 <script>
-  import CatCard from '@/components/card/cat/index.vue'
-
   export default {
-    components: {
-      CatCard,
-    },
     data() {
       return {
         list: [],

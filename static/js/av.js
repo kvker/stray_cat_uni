@@ -1,10 +1,16 @@
+// #ifdef H5
+import AV from 'leancloud-storage'
+// #endif
+
+// #ifdef MP-WEIXIN
 import AV from '../lib/av-weapp-min.js'
+// #endif
 
 if(!(AV.applicationId && (AV.applicationKey || AV.masterKey))) {
   let lc = {
-    appId: 'm2VENdxPXTCjBuHzmPgHYq9k-9Nh9j0Va',
-    appKey: 'TnzJQhcWuQzOSExIoB3CDHu0',
-    serverURL: 'https://m2vendxp.lc-cn-e1-shared.com',
+    appId: 'Yb6JjWHktmSuFXDLSwsTPMQA-gzGzoHsz',
+    appKey: 'EK1cUSUvfzqXzazC7YidGFbp',
+    serverURL: 'https://catdocument.ilovecats.cn',
   }
   AV.init(lc)
 }
