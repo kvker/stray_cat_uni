@@ -1,5 +1,8 @@
 node_modules/
 .hbuilderx
-unpackage/dist/dev/
-unpackage/dist/build/mp-weixin/
-unpackage/dist/build/.automator/
+unpackage/*
+!unpackage/dist/
+unpackage/dist/*
+!unpackage/dist/build/
+unpackage/dist/build/*
+!unpackage/dist/build/h5/

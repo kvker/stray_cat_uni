@@ -79,6 +79,12 @@
     padding: 20rpx;
     background-color: #F4EFE9;
   }
+  
+  /* #ifdef H5 */
+  .container {
+    padding-bottom: 20rpx;
+  }
+  /* #endif */
 
   .content {
     display: flex;
