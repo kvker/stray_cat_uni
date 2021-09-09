@@ -44,22 +44,22 @@
 
 <style>
   .cat-card {
-    border-radius: 24upx;
+    border-radius: 24rpx;
     background-color: white;
     overflow: hidden;
   }
 
   .cat-img {
     width: 100%;
-    height: 400upx;
+    height: 400rpx;
   }
   
   .box {
-    padding: 20upx 40upx 20upx;
+    padding: 20rpx 40rpx 20rpx;
   }
   
   .box:last-child {
-    padding: 20upx 40upx 40upx;
+    padding: 20rpx 40rpx 40rpx;
   }
 
   .title {
@@ -67,13 +67,13 @@
     font-family: PingFang SC;
     font-weight: 200;
     color: rgba(148, 148, 148, 1);
-    line-height: 32upx;
+    line-height: 32rpx;
   }
 
   .value {
     font-size: 32rpx;
     font-family: PingFang SC;
     color: rgba(56, 56, 56, 1);
-    line-height: 32upx;
+    line-height: 32rpx;
   }
 </style>

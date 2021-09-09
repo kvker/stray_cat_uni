@@ -1,11 +1,11 @@
 <template>
   <view class="container pb-20">
     <template v-if="detail.id">
-      <swiper style="height: 600upx;" class="swiper" :indicator-dots="true" :autoplay="true" :duration="300">
-        <swiper-item style="height: 600upx;" v-for="(url, idx) in jsonDetail.img_urls" :key="idx"
+      <swiper style="height: 600rpx;" class="swiper" :indicator-dots="true" :autoplay="true" :duration="300">
+        <swiper-item style="height: 600rpx;" v-for="(url, idx) in jsonDetail.img_urls" :key="idx"
           @click="previewImg(url, idx)">
           <view class="swiper-item uni-bg-red">
-            <image class="w-100" style="height: 600upx;" :src="url" mode="aspectFill"></image>
+            <image class="w-100" style="height: 600rpx;" :src="url" mode="aspectFill"></image>
           </view>
         </swiper-item>
       </swiper>
@@ -170,16 +170,16 @@
   }
 
   .line-box {
-    padding: 20upx 40upx 0;
+    padding: 20rpx 40rpx 0;
   }
 
   .line-box:last-child {
-    padding: 20upx 40upx;
+    padding: 20rpx 40rpx;
   }
 
   .title,
   .cell {
-    font-size: 32upx;
+    font-size: 32rpx;
     font-family: PingFang SC;
     font-weight: 200;
     color: rgba(148, 148, 148, 1);
@@ -187,30 +187,30 @@
 
   .value,
   .content {
-    font-size: 32upx;
+    font-size: 32rpx;
     font-family: PingFang SC;
     color: rgba(56, 56, 56, 1);
   }
 
   .cell {
-    padding: 40upx 40upx 20upx;
+    padding: 40rpx 40rpx 20rpx;
   }
 
   .content {
-    padding: 20upx 40upx 40upx;
+    padding: 20rpx 40rpx 40rpx;
     border-top: 2rpx solid #eee;
   }
 
   .fab {
     position: fixed;
-    right: 40upx;
-    bottom: 80upx;
-    width: 80upx;
-    height: 80upx;
-    font-size: 48upx;
+    right: 40rpx;
+    bottom: 80rpx;
+    width: 80rpx;
+    height: 80rpx;
+    font-size: 48rpx;
     border-radius: 50%;
     background-color: white;
-    box-shadow: 0 0 4upx black;
+    box-shadow: 0 0 4rpx black;
     color: white;
   }
 

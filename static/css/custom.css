@@ -39,20 +39,20 @@ body {
 }
 
 page {
-  --main_length: 400upx;
-  --main_size: 88upx;
+  --main_length: 400rpx;
+  --main_size: 88rpx;
   --main_gray: #d8d8d8;
-  --main_gap: 20upx;
+  --main_gap: 20rpx;
   --main_color: #394F3E;
   --main_orange: #DB6D28;
   --top_color: #999;
   --middle_color: #999;
   --lower_color: #999;
   --bg_color: #F4EFE9;
-  --main_radius: 16upx;
-  --main_line: 2upx solid #999;
+  --main_radius: 16rpx;
+  --main_line: 2rpx solid #999;
   color: #333;
-  font-size: 28upx;
+  font-size: 28rpx;
   height: 100%;
 }
 
@@ -210,7 +210,7 @@ button:after {
 }
 
 .min-font-size {
-  font-size: 24upx;
+  font-size: 24rpx;
 }
 
 .none {
@@ -328,143 +328,143 @@ button:after {
 }
 
 .p-10 {
-  padding: 10upx;
+  padding: 10rpx;
 }
 
 .px-10 {
-  padding: 0 10upx;
+  padding: 0 10rpx;
 }
 
 .py-10 {
-  padding: 10upx 0;
+  padding: 10rpx 0;
 }
 
 .pt-10 {
-  padding-top: 10upx;
+  padding-top: 10rpx;
 }
 
 .pr-10 {
-  padding-right: 10upx;
+  padding-right: 10rpx;
 }
 
 .pb-10 {
-  padding-bottom: 10upx;
+  padding-bottom: 10rpx;
 }
 
 .pl-10 {
-  padding-left: 10upx;
+  padding-left: 10rpx;
 }
 
 .p-20 {
-  padding: 20upx;
+  padding: 20rpx;
 }
 
 .px-20 {
-  padding: 0 20upx;
+  padding: 0 20rpx;
 }
 
 .py-20 {
-  padding: 20upx 0;
+  padding: 20rpx 0;
 }
 
 .pt-20 {
-  padding-top: 20upx;
+  padding-top: 20rpx;
 }
 
 .pr-20 {
-  padding-right: 20upx;
+  padding-right: 20rpx;
 }
 
 .pb-20 {
-  padding-bottom: 20upx;
+  padding-bottom: 20rpx;
 }
 
 .pl-20 {
-  padding-left: 20upx;
+  padding-left: 20rpx;
 }
 
 .p-40 {
-  padding: 40upx;
+  padding: 40rpx;
 }
 
 .px-40 {
-  padding: 0 40upx;
+  padding: 0 40rpx;
 }
 
 .py-40 {
-  padding: 40upx 0;
+  padding: 40rpx 0;
 }
 
 .pt-40 {
-  padding-top: 40upx;
+  padding-top: 40rpx;
 }
 
 .pr-40 {
-  padding-right: 40upx;
+  padding-right: 40rpx;
 }
 
 .pb-40 {
-  padding-bottom: 40upx;
+  padding-bottom: 40rpx;
 }
 
 .pl-40 {
-  padding-left: 40upx;
+  padding-left: 40rpx;
 }
 
 .p-40 {
-  padding: 40upx;
+  padding: 40rpx;
 }
 
 .px-80 {
-  padding: 0 80upx;
+  padding: 0 80rpx;
 }
 
 .py-80 {
-  padding: 80upx 0;
+  padding: 80rpx 0;
 }
 
 .pt-80 {
-  padding-top: 80upx;
+  padding-top: 80rpx;
 }
 
 .pr-80 {
-  padding-right: 80upx;
+  padding-right: 80rpx;
 }
 
 .pb-80 {
-  padding-bottom: 80upx;
+  padding-bottom: 80rpx;
 }
 
 .pl-80 {
-  padding-left: 80upx;
+  padding-left: 80rpx;
 }
 
 .p-160 {
-  padding: 160upx;
+  padding: 160rpx;
 }
 
 .px-160 {
-  padding: 0 160upx;
+  padding: 0 160rpx;
 }
 
 .py-160 {
-  padding: 160upx 0;
+  padding: 160rpx 0;
 }
 
 .pt-160 {
-  padding-top: 160upx;
+  padding-top: 160rpx;
 }
 
 .pr-160 {
-  padding-right: 160upx;
+  padding-right: 160rpx;
 }
 
 .pb-160 {
-  padding-bottom: 160upx;
+  padding-bottom: 160rpx;
 }
 
 .pl-160 {
-  padding-left: 160upx;
+  padding-left: 160rpx;
 }
 
 m-0 {
@@ -498,145 +498,145 @@ m-0 {
 }
 
 .m-10 {
-  margin: 10upx;
+  margin: 10rpx;
 }
 
 .mx-10 {
-  margin: 0 10upx;
+  margin: 0 10rpx;
 }
 
 .my-10 {
-  margin: 10upx 0;
+  margin: 10rpx 0;
 }
 
 .mt-10 {
-  margin-top: 10upx;
+  margin-top: 10rpx;
 }
 
 .mr-10 {
-  margin-right: 10upx;
+  margin-right: 10rpx;
 }
 
 .mb-10 {
-  margin-bottom: 10upx;
+  margin-bottom: 10rpx;
 }
 
 .ml-10 {
-  margin-left: 10upx;
+  margin-left: 10rpx;
 }
 
 .m-20 {
-  margin: 20upx;
+  margin: 20rpx;
 }
 
 .mx-20 {
-  margin: 0 20upx;
+  margin: 0 20rpx;
 }
 
 .my-20 {
-  margin: 20upx 0;
+  margin: 20rpx 0;
 }
 
 .mt-20 {
-  margin-top: 20upx;
+  margin-top: 20rpx;
 }
 
 .mr-20 {
-  margin-right: 20upx;
+  margin-right: 20rpx;
 }
 
 .mb-20 {
-  margin-bottom: 20upx;
+  margin-bottom: 20rpx;
 }
 
 .ml-20 {
-  margin-left: 20upx;
+  margin-left: 20rpx;
 }
 
 .m-40 {
-  margin: 40upx;
+  margin: 40rpx;
 }
 
 .mx-40 {
-  margin: 0 40upx;
+  margin: 0 40rpx;
 }
 
 .my-40 {
-  margin: 40upx 0;
+  margin: 40rpx 0;
 }
 
 .mt-40 {
-  margin-top: 40upx;
+  margin-top: 40rpx;
 }
 
 .mr-40 {
-  margin-right: 40upx;
+  margin-right: 40rpx;
 }
 
 .mb-40 {
-  margin-bottom: 40upx;
+  margin-bottom: 40rpx;
 }
 
 .ml-40 {
-  margin-left: 40upx;
+  margin-left: 40rpx;
 }
 
 .m-80 {
-  margin: 80upx;
+  margin: 80rpx;
 }
 
 .mx-80 {
-  margin: 0 80upx;
+  margin: 0 80rpx;
 }
 
 .my-80 {
-  margin: 80upx 0;
+  margin: 80rpx 0;
 }
 
 .mt-80 {
-  margin-top: 80upx;
+  margin-top: 80rpx;
 }
 
 .mr-80 {
-  margin-right: 80upx;
+  margin-right: 80rpx;
 }
 
 .mb-80 {
-  margin-bottom: 80upx;
+  margin-bottom: 80rpx;
 }
 
 .ml-80 {
-  margin-left: 80upx;
+  margin-left: 80rpx;
 }
 
 .m-160 {
-  margin: 160upx;
+  margin: 160rpx;
 }
 
 .mx-160 {
-  margin: 0 160upx;
+  margin: 0 160rpx;
 }
 
 .my-160 {
-  margin: 160upx 0;
+  margin: 160rpx 0;
 }
 
 .mt-160 {
-  margin-top: 160upx;
+  margin-top: 160rpx;
 }
 
 .mr-160 {
-  margin-right: 160upx;
+  margin-right: 160rpx;
 }
 
 .mb-160 {
-  margin-bottom: 160upx;
+  margin-bottom: 160rpx;
 }
 
 .ml-160 {
-  margin-left: 160upx;
+  margin-left: 160rpx;
 }
 
 .min-font-size {
-  font-size: 24upx;
+  font-size: 24rpx;
 }
