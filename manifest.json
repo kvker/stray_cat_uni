@@ -76,7 +76,8 @@
         "title" : "街猫档案",
         "router" : {
             "mode" : "hash",
-            "base" : "/stary_cat/"
-        }
+            "base" : "/stray_cat/"
+        },
+        "domain" : "https://kvker.gitee.io/stray_cat/"
     }
 }
