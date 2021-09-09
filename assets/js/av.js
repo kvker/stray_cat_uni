@@ -2,8 +2,10 @@
 import AV from 'leancloud-storage'
 // #endif
 
-// #ifdef MP-WEIXIN
-import AV from '../lib/av-weapp-min.js'
+// #ifdef MP
+const AV = require('../../static/libs/av-core-min.js')
+const adapters = require('../../static/libs/leancloud-adapters-weapp.js')
+AV.setAdapters(adapters)
 // #endif
 
 if(!(AV.applicationId && (AV.applicationKey || AV.masterKey))) {
