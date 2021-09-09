@@ -55,6 +55,7 @@
           q.limit(10)
           q.skip(page * 10)
           q.descending('createdAt')
+          q.include(['cover_img'])
         })
         uni.stopPullDownRefresh()
         uni.hideToast()

@@ -2,7 +2,8 @@
   <view class="container pb-20">
     <template v-if="detail.id">
       <swiper style="height: 600upx;" class="swiper" :indicator-dots="true" :autoplay="true" :duration="300">
-        <swiper-item style="height: 600upx;" v-for="(url, idx) in jsonDetail.imgs" :key="idx" @click="previewImg(url, idx)">
+        <swiper-item style="height: 600upx;" v-for="(url, idx) in jsonDetail.img_urls" :key="idx"
+          @click="previewImg(url, idx)">
           <view class="swiper-item uni-bg-red">
             <image class="w-100" style="height: 600upx;" :src="url" mode="aspectFill"></image>
           </view>
@@ -56,7 +57,8 @@
           </view>
           <view class="flex aic f1 value-box">
             <text class="title">居住地</text>
-            <text class="value ml-20">{{jsonDetail.address}}</text></view>
+            <text class="value ml-20">{{jsonDetail.address}}</text>
+          </view>
         </view>
       </view>
       <view class="box mt-20">
@@ -105,14 +107,16 @@
           json.age_label = this.age_list[json.age]
           json.sex_label = json.sex ? (json.sex === 1 ? '母' : '公') : '未知'
           json.id = json.sex ? (json.sex === 1 ? 'M' + json.id : 'G' + json.id) : 'X' + json.id
-          json.quchong_outer_label = json.quchong_outer ? this.$util.formatDate(json.quchong_outer, 'YY/MM/DD') : '未驱虫'
-          json.quchong_inner_label = json.quchong_inner ? this.$util.formatDate(json.quchong_inner, 'YY/MM/DD') : '未驱虫'
+          json.quchong_outer_label = json.quchong_outer ? this.$util.formatDate(json.quchong_outer, 'YY/MM/DD') :
+            '未驱虫'
+          json.quchong_inner_label = json.quchong_inner ? this.$util.formatDate(json.quchong_inner, 'YY/MM/DD') :
+            '未驱虫'
           json.category_label = this.$util.getCategoryLabel(json.category)
           json.lingyang_label = this.$util.getLingyangLevelLabel(json.lingyang_level)
           json.jueyu_label = json.jueyu_status ? (json.jueyu_status === 1 ? '已绝育' : '未知') : '未绝育'
           json.waiguan = json.waiguan || '暂时为空'
           json.xingge = json.xingge || '暂时为空'
-          json.imgs = [json.cover_img, ...json.imgs]
+          json.img_urls = [json.cover_img.url, ...json.imgs.map(i => i.url)]
           return json
         }
       }
@@ -133,9 +137,15 @@
       async getDetail(objectId = this.objectId) {
         let list = await this.$av.read('Cat', q => {
           q.equalTo('objectId', objectId)
+          q.include(['cover_img'])
         })
         // console.log(list[0])
-        this.detail = list[0]
+        let item = list[0]
+        let files = await this.$av.read('_File', q => {
+          q.containsAll('objectId', item.get('imgs'))
+        })
+        item.set('imgs', files)
+        this.detail = item
         uni.setNavigationBarTitle({
           title: `${this.detail.get('name')}的档案`,
         })
