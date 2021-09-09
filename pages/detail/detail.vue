@@ -86,6 +86,19 @@
         </view>
       </view> -->
     </template>
+    <!-- #ifndef MP -->
+    <navigator v-if="is_self" :url="`/pages/edit/edit?edit=true&objectId=${objectId}`" class="fab"
+      style="bottom: 200upx">
+      <image src="/static/img/cat.png" mode="aspectFill"></image>
+    </navigator>
+    <navigator v-if="is_admin" url="/pages/edit/edit" class="fab flex aic jcc btn"
+      style="background-color: #394F3E;">
+      +
+    </navigator>
+    <navigator v-else url="/pages/login/login" class="fab flex aic jcc btn" style="background-color: #394F3E;">
+      +
+    </navigator>
+    <!-- #endif -->
   </view>
 </template>
 
@@ -98,6 +111,10 @@
         age_list: ['未知', '0-3个月', '3-6个月', '6-12个月', ...Array.from({
           length: 17
         }, (i, idx) => idx).map(i => `${i + 1}-${i + 2}岁`)],
+        // 是否登录, 控制加号显示
+        is_admin: false,
+        // 是否自己, 控制编辑显示
+        is_self: false,
       }
     },
     computed: {
@@ -130,7 +147,7 @@
     onShareAppMessage() {
       return {
         title: '花名: ' + this.jsonDetail.name,
-        imageUrl: this.jsonDetail.imgs[0],
+        imageUrl: this.jsonDetail.cover_img.url,
       }
     },
     methods: {
@@ -149,6 +166,16 @@
         uni.setNavigationBarTitle({
           title: `${this.detail.get('name')}的档案`,
         })
+        // 判断是不是自己的猫
+        let current_user = this.$av.currentUser()
+        if (current_user) {
+          let roles = await current_user.getRoles()
+          let role = roles[0]
+          if (role) {
+            this.is_admin = role.get('name') === 'admin'
+            this.is_self = this.detail.get('owner').get('objectId') === current_user.get('objectId')
+          }
+        }
       },
       previewImg(url, idx) {
         uni.previewImage({
