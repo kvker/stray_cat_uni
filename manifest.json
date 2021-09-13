@@ -1,4 +1,4 @@
-{
+  {
     "name" : "街猫档案",
     "appid" : "__UNI__700AA22",
     "description" : "",
@@ -76,7 +76,7 @@
         "title" : "街猫档案",
         "router" : {
             "mode" : "history",
-            "base" : "/stray_cat/"
+            "base" : "./"
         },
         "domain" : "https://kvker.gitee.io/stray_cat/"
     }
