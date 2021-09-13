@@ -76,7 +76,7 @@
         "title" : "街猫档案",
         "router" : {
             "mode" : "history",
-            "base" : "/stary_cat_uni/unpackage/dist/build/h5/"
+            "base" : "/stray_cat_uni/unpackage/dist/build/h5/"
         },
         "domain" : "https://kvker.gitee.io/stray_cat/"
     }
