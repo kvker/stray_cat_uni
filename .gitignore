@@ -1,8 +1,3 @@
 node_modules/
 .hbuilderx
-unpackage/*
-!unpackage/dist/
-unpackage/dist/*
-!unpackage/dist/build/
-unpackage/dist/build/*
-!unpackage/dist/build/h5/
+unpackage/
